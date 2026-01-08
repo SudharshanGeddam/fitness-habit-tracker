@@ -10,7 +10,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final habits = ['Drinking Water', 'Morning Walk', 'Read 20 Minutes'];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -68,16 +67,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   Chip(label: Text("Evening"), shape: StadiumBorder()),
                 ],
               ),
-              const SizedBox(height: 10,),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: habits.length,
-                  itemBuilder: (context, index) {
-                    return HabitCard(habitName: habits[index],);
-                  },
-                ),
-              ),
-              const SizedBox(height: 10,),
+              
+
+              // PageView builder
+              Expanded(child: HabitCard()),
+              
               Row(
                 children: [
                   Text("Completed"),
@@ -85,14 +79,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
               const SizedBox(height: 10,),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: habits.length,
-                  itemBuilder: (context, index) {
-                    return HabitCard(habitName: habits[index],);
-                  },
-                ),
-              ),
               Align(
                 alignment: AlignmentGeometry.bottomEnd,
                 child: FloatingActionButton(onPressed: (){}, 
