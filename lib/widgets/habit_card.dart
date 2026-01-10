@@ -1,49 +1,65 @@
-import 'package:fitness_habit_tracker/features/habits/models/cards_data.dart';
+import 'package:fitness_habit_tracker/features/habits/models/habit_model.dart';
 import 'package:flutter/material.dart';
 
-class HabitCard extends StatelessWidget {
-  const HabitCard({super.key});
+class HabitCard extends StatefulWidget {
+  const HabitCard({super.key, required this.habits, required this.onToggle});
+
+  final HabitModel habits;
+  final VoidCallback onToggle;
+  @override
+  State<HabitCard> createState() => _HabitCardState();
+}
+
+class _HabitCardState extends State<HabitCard> {
+  bool isCompleted = false;
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: dataList.length,
-      scrollDirection: Axis.vertical,
-      itemBuilder: (context, index) {
-        final item = dataList[index];
-
-        return Padding(
-          padding: EdgeInsets.all(8.0),
-          child: SizedBox(
-            height: 80,
-            child: Container(
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          isCompleted = !isCompleted;
+        });
+        widget.onToggle();
+      },
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+        margin: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+        padding: EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: widget.habits.color,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 50,
+              height: 50,
               decoration: BoxDecoration(
-                color: item.color,
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black26,
-                    blurRadius: 10,
-                    offset: Offset(0, 0.7)
-                  )
-                ],
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const SizedBox(width: 50,),
-                  Expanded(
-                    child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(item.icon, style: TextStyle(fontSize: 40),))),
-                  const SizedBox(width: 10,),
-                  Text(item.title, style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),),
-                  Expanded(child: Container(),), 
-                ],
+              alignment: Alignment.center,
+              child: Text(widget.habits.icon, style: TextStyle(fontSize: 30)),
+            ),
+            SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                widget.habits.title,
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
             ),
-          ),
-        );
-      },
+            Icon(
+              widget.habits.isCompleted
+                  ? Icons.check_circle
+                  : Icons.radio_button_unchecked,
+              color: widget.habits.isCompleted ? Colors.green : Colors.white,
+              size: 30,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
