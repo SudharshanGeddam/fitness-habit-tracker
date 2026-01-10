@@ -5,18 +5,26 @@ class BottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(16.0),
-      decoration: BoxDecoration(
-        color: Colors.black,
-        borderRadius: BorderRadius.circular(30),
-      ),
-      child: BottomNavigationBar(items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home_rounded), label: 'Home', backgroundColor: Colors.black),
-        BottomNavigationBarItem(icon: Icon(Icons.repeat_one_on), label: 'Report', backgroundColor: Colors.black),
-        BottomNavigationBarItem(icon: Icon(Icons.grid_view_rounded), label: 'My Habits', backgroundColor: Colors.black),
-        BottomNavigationBarItem(icon: Icon(Icons.person_outline_sharp), label: 'Account', backgroundColor: Colors.black),
-      ]),
+    return BottomNavigationBar(
+      elevation: 2,
+      type: BottomNavigationBarType.fixed,
+      selectedItemColor: Color.fromRGBO(137, 133, 233, 1),
+      unselectedItemColor: Color.fromRGBO(183, 183, 183, 1),
+      items: const [
+        BottomNavigationBarItem(icon: Icon(Icons.home_rounded), label: 'Home'),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.repeat_one_on),
+          label: 'Report',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.grid_view_rounded),
+          label: 'My Habits',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person_outline_sharp),
+          label: 'Account',
+        ),
+      ],
     );
   }
 }
