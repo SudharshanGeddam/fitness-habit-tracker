@@ -1,5 +1,6 @@
 import 'package:fitness_habit_tracker/features/habits/models/cards_data.dart';
 import 'package:fitness_habit_tracker/features/habits/models/habit_model.dart';
+import 'package:fitness_habit_tracker/features/habits/screens/create_habit_screen.dart';
 import 'package:fitness_habit_tracker/widgets/bottom_nav_bar.dart';
 import 'package:fitness_habit_tracker/widgets/habit_card.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +36,12 @@ class _MyHomePageState extends State<MyHomePage> {
           centerTitle: true,
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => CreateHabitScreen()),
+            );
+          },
           child: Icon(Icons.add),
         ),
         bottomNavigationBar: BottomNavBar(),

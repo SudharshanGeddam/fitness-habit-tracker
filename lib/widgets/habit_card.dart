@@ -54,7 +54,9 @@ class _HabitCardState extends State<HabitCard> {
               widget.habits.isCompleted
                   ? Icons.check_circle
                   : Icons.radio_button_unchecked,
-              color: widget.habits.isCompleted ? Colors.green : Colors.white,
+              color: widget.habits.isCompleted
+                  ? Colors.green
+                  : widget.habits.color,
               size: 30,
             ),
           ],
