@@ -2,9 +2,17 @@ import 'package:fitness_habit_tracker/core/constants/app_icons.dart';
 import 'package:fitness_habit_tracker/core/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 
-class CreateHabitScreen extends StatelessWidget {
+class CreateHabitScreen extends StatefulWidget {
   const CreateHabitScreen({super.key});
 
+  @override
+  State<CreateHabitScreen> createState() => _CreateHabitScreenState();
+}
+
+int selectedIndex = 0;
+
+class _CreateHabitScreenState extends State<CreateHabitScreen> {
+  bool selectedIcon = false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -50,87 +58,7 @@ class CreateHabitScreen extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 20),
-              Row(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16.0),
-                        border: Border.all(width: 1.0),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: ImageIcon(
-                          AppIcons.basketBall,
-                          color: Colors.green,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16.0),
-                        border: Border.all(width: 1.0),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: ImageIcon(AppIcons.cupIcon, color: Colors.amber),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16.0),
-                        border: Border.all(width: 1.0),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: ImageIcon(
-                          AppIcons.goldBadge,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16.0),
-                        border: Border.all(width: 1.0),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: ImageIcon(
-                          AppIcons.iceSkating,
-                          color: Colors.deepPurpleAccent,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16.0),
-                        border: Border.all(width: 1.0),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: ImageIcon(
-                          AppIcons.happiness,
-                          color: Colors.blueAccent,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              _buildIconSelection(),
               SizedBox(height: 20),
               Text("Color"),
               Wrap(
@@ -411,6 +339,50 @@ class CreateHabitScreen extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  // Icon selection - Icon view
+  Widget _buildIconSelection() {
+    int iconCount = 5;
+    List<ImageIcon> icons = [
+      ImageIcon(AppIcons.basketBall, color: Colors.red),
+      ImageIcon(AppIcons.cupIcon, color: Colors.amber),
+      ImageIcon(AppIcons.goldBadge, color: Colors.blue),
+      ImageIcon(AppIcons.iceSkating),
+      ImageIcon(AppIcons.happiness, color: Colors.green),
+    ];
+    return Row(
+      children: [
+        for (var i = 0; i < iconCount; i++)
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  selectedIndex = i;
+                });
+              },
+              child: AnimatedContainer(
+                duration: Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16.0),
+                  border: Border.all(
+                    width: 1.0,
+                    color: selectedIndex == i
+                        ? Colors.blue
+                        : Colors.transparent,
+                  ),
+                  color: selectedIndex == i
+                      ? Colors.grey[300]
+                      : context.cardColor,
+                ),
+                child: Padding(padding: EdgeInsets.all(16.0), child: icons[i]),
+              ),
+            ),
+          ),
+      ],
     );
   }
 
