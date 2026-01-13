@@ -1,3 +1,4 @@
+import 'package:fitness_habit_tracker/core/extensions/context_extensions.dart';
 import 'package:fitness_habit_tracker/features/habits/models/habit_model.dart';
 import 'package:flutter/material.dart';
 
@@ -34,20 +35,20 @@ class _HabitCardState extends State<HabitCard> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              width: 50,
-              height: 50,
+              width: 40,
+              height: 40,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
               ),
               alignment: Alignment.center,
-              child: Text(widget.habits.icon, style: TextStyle(fontSize: 30)),
+              child: widget.habits.icon,
             ),
             SizedBox(width: 12),
             Expanded(
               child: Text(
                 widget.habits.title,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                style: context.textTheme.titleMedium,
               ),
             ),
             Icon(

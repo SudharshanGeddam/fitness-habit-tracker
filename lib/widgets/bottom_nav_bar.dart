@@ -1,3 +1,4 @@
+import 'package:fitness_habit_tracker/core/constants/app_icons.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatelessWidget {
@@ -13,7 +14,7 @@ class BottomNavBar extends StatelessWidget {
       items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home_rounded), label: 'Home'),
         BottomNavigationBarItem(
-          icon: Icon(Icons.repeat_one_on),
+          icon: ImageIcon(AppIcons.reportIcon),
           label: 'Report',
         ),
         BottomNavigationBarItem(

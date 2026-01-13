@@ -1,3 +1,5 @@
+import 'package:fitness_habit_tracker/core/constants/app_icons.dart';
+import 'package:fitness_habit_tracker/core/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 
 class CreateHabitScreen extends StatelessWidget {
@@ -21,7 +23,7 @@ class CreateHabitScreen extends StatelessWidget {
                     icon: Icon(Icons.arrow_back_ios_sharp),
                   ),
                   SizedBox(width: 8.0),
-                  Text("Create New Habit", style: TextStyle(fontSize: 22)),
+                  Text("Create New Habit", style: context.textTheme.titleLarge),
                   Spacer(),
                 ],
               ),
@@ -59,7 +61,10 @@ class CreateHabitScreen extends StatelessWidget {
                       ),
                       child: Padding(
                         padding: EdgeInsets.all(16.0),
-                        child: Icon(Icons.sports_basketball),
+                        child: ImageIcon(
+                          AppIcons.basketBall,
+                          color: Colors.green,
+                        ),
                       ),
                     ),
                   ),
@@ -72,7 +77,7 @@ class CreateHabitScreen extends StatelessWidget {
                       ),
                       child: Padding(
                         padding: EdgeInsets.all(16.0),
-                        child: Icon(Icons.sports_basketball),
+                        child: ImageIcon(AppIcons.cupIcon, color: Colors.amber),
                       ),
                     ),
                   ),
@@ -85,7 +90,10 @@ class CreateHabitScreen extends StatelessWidget {
                       ),
                       child: Padding(
                         padding: EdgeInsets.all(16.0),
-                        child: Icon(Icons.sports_basketball),
+                        child: ImageIcon(
+                          AppIcons.goldBadge,
+                          color: Colors.grey,
+                        ),
                       ),
                     ),
                   ),
@@ -98,7 +106,10 @@ class CreateHabitScreen extends StatelessWidget {
                       ),
                       child: Padding(
                         padding: EdgeInsets.all(16.0),
-                        child: Icon(Icons.sports_basketball),
+                        child: ImageIcon(
+                          AppIcons.iceSkating,
+                          color: Colors.deepPurpleAccent,
+                        ),
                       ),
                     ),
                   ),
@@ -111,7 +122,10 @@ class CreateHabitScreen extends StatelessWidget {
                       ),
                       child: Padding(
                         padding: EdgeInsets.all(16.0),
-                        child: Icon(Icons.sports_basketball),
+                        child: ImageIcon(
+                          AppIcons.happiness,
+                          color: Colors.blueAccent,
+                        ),
                       ),
                     ),
                   ),

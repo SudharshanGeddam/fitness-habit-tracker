@@ -1,3 +1,5 @@
+import 'package:fitness_habit_tracker/core/constants/app_icons.dart';
+import 'package:fitness_habit_tracker/core/extensions/context_extensions.dart';
 import 'package:fitness_habit_tracker/features/habits/models/cards_data.dart';
 import 'package:fitness_habit_tracker/features/habits/models/habit_model.dart';
 import 'package:fitness_habit_tracker/features/habits/screens/create_habit_screen.dart';
@@ -22,12 +24,14 @@ class _MyHomePageState extends State<MyHomePage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          leading: Icon(Icons.abc),
-
+          leading: ImageIcon(AppIcons.appIcon, color: Colors.blue),
           title: Column(
             children: [
               Text("Fitness Tracker"),
-              Text("Discipline builds freedom", style: TextStyle(fontSize: 12)),
+              Text(
+                "Discipline builds freedom",
+                style: context.textTheme.titleSmall,
+              ),
             ],
           ),
           actions: [
@@ -99,7 +103,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ),
               ),
-              SizedBox(height: 20),
             ],
           ),
         ),
@@ -109,14 +112,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _buildDayFilterChips() {
     return Padding(
-      padding: EdgeInsets.all(10.0),
+      padding: EdgeInsets.all(8.0),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.0),
           color: Color.fromRGBO(196, 196, 196, 0.25),
         ),
         child: Padding(
-          padding: EdgeInsets.all(10.0),
+          padding: EdgeInsets.all(5.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
