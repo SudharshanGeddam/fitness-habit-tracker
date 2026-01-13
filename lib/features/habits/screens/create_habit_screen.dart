@@ -9,7 +9,7 @@ class CreateHabitScreen extends StatefulWidget {
   State<CreateHabitScreen> createState() => _CreateHabitScreenState();
 }
 
-int selectedIndex = 0;
+int selectedIconIndex = 0, selectedColorIndex = 0;
 
 class _CreateHabitScreenState extends State<CreateHabitScreen> {
   bool selectedIcon = false;
@@ -61,210 +61,211 @@ class _CreateHabitScreenState extends State<CreateHabitScreen> {
               _buildIconSelection(),
               SizedBox(height: 20),
               Text("Color"),
-              Wrap(
-                runAlignment: WrapAlignment.spaceEvenly,
+              _buildColorSelection(),
+              // Wrap(
+              //   runAlignment: WrapAlignment.spaceEvenly,
 
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(5.0),
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.blue,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(5.0),
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.amber,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(5.0),
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.blueGrey,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(5.0),
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.red,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(5.0),
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.green,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(5.0),
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.purple,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(5.0),
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.cyan,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(5.0),
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.pink,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(5.0),
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.redAccent,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(5.0),
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.purpleAccent,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(5.0),
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.indigo,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(5.0),
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.blueGrey,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(5.0),
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.lightBlueAccent,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(5.0),
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.limeAccent,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(5.0),
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.orange,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(5.0),
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.brown,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(5.0),
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.greenAccent,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(5.0),
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.pinkAccent,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              //   children: [
+              //     Padding(
+              //       padding: EdgeInsets.all(5.0),
+              //       child: Container(
+              //         width: 50,
+              //         height: 50,
+              //         decoration: BoxDecoration(
+              //           shape: BoxShape.circle,
+              //           color: Colors.blue,
+              //         ),
+              //       ),
+              //     ),
+              //     Padding(
+              //       padding: EdgeInsets.all(5.0),
+              //       child: Container(
+              //         width: 50,
+              //         height: 50,
+              //         decoration: BoxDecoration(
+              //           shape: BoxShape.circle,
+              //           color: Colors.amber,
+              //         ),
+              //       ),
+              //     ),
+              //     Padding(
+              //       padding: EdgeInsets.all(5.0),
+              //       child: Container(
+              //         width: 50,
+              //         height: 50,
+              //         decoration: BoxDecoration(
+              //           shape: BoxShape.circle,
+              //           color: Colors.blueGrey,
+              //         ),
+              //       ),
+              //     ),
+              //     Padding(
+              //       padding: EdgeInsets.all(5.0),
+              //       child: Container(
+              //         width: 50,
+              //         height: 50,
+              //         decoration: BoxDecoration(
+              //           shape: BoxShape.circle,
+              //           color: Colors.red,
+              //         ),
+              //       ),
+              //     ),
+              //     Padding(
+              //       padding: EdgeInsets.all(5.0),
+              //       child: Container(
+              //         width: 50,
+              //         height: 50,
+              //         decoration: BoxDecoration(
+              //           shape: BoxShape.circle,
+              //           color: Colors.green,
+              //         ),
+              //       ),
+              //     ),
+              //     Padding(
+              //       padding: EdgeInsets.all(5.0),
+              //       child: Container(
+              //         width: 50,
+              //         height: 50,
+              //         decoration: BoxDecoration(
+              //           shape: BoxShape.circle,
+              //           color: Colors.purple,
+              //         ),
+              //       ),
+              //     ),
+              //     Padding(
+              //       padding: EdgeInsets.all(5.0),
+              //       child: Container(
+              //         width: 50,
+              //         height: 50,
+              //         decoration: BoxDecoration(
+              //           shape: BoxShape.circle,
+              //           color: Colors.cyan,
+              //         ),
+              //       ),
+              //     ),
+              //     Padding(
+              //       padding: EdgeInsets.all(5.0),
+              //       child: Container(
+              //         width: 50,
+              //         height: 50,
+              //         decoration: BoxDecoration(
+              //           shape: BoxShape.circle,
+              //           color: Colors.pink,
+              //         ),
+              //       ),
+              //     ),
+              //     Padding(
+              //       padding: EdgeInsets.all(5.0),
+              //       child: Container(
+              //         width: 50,
+              //         height: 50,
+              //         decoration: BoxDecoration(
+              //           shape: BoxShape.circle,
+              //           color: Colors.redAccent,
+              //         ),
+              //       ),
+              //     ),
+              //     Padding(
+              //       padding: EdgeInsets.all(5.0),
+              //       child: Container(
+              //         width: 50,
+              //         height: 50,
+              //         decoration: BoxDecoration(
+              //           shape: BoxShape.circle,
+              //           color: Colors.purpleAccent,
+              //         ),
+              //       ),
+              //     ),
+              //     Padding(
+              //       padding: EdgeInsets.all(5.0),
+              //       child: Container(
+              //         width: 50,
+              //         height: 50,
+              //         decoration: BoxDecoration(
+              //           shape: BoxShape.circle,
+              //           color: Colors.indigo,
+              //         ),
+              //       ),
+              //     ),
+              //     Padding(
+              //       padding: EdgeInsets.all(5.0),
+              //       child: Container(
+              //         width: 50,
+              //         height: 50,
+              //         decoration: BoxDecoration(
+              //           shape: BoxShape.circle,
+              //           color: Colors.blueGrey,
+              //         ),
+              //       ),
+              //     ),
+              //     Padding(
+              //       padding: EdgeInsets.all(5.0),
+              //       child: Container(
+              //         width: 50,
+              //         height: 50,
+              //         decoration: BoxDecoration(
+              //           shape: BoxShape.circle,
+              //           color: Colors.lightBlueAccent,
+              //         ),
+              //       ),
+              //     ),
+              //     Padding(
+              //       padding: EdgeInsets.all(5.0),
+              //       child: Container(
+              //         width: 50,
+              //         height: 50,
+              //         decoration: BoxDecoration(
+              //           shape: BoxShape.circle,
+              //           color: Colors.limeAccent,
+              //         ),
+              //       ),
+              //     ),
+              //     Padding(
+              //       padding: EdgeInsets.all(5.0),
+              //       child: Container(
+              //         width: 50,
+              //         height: 50,
+              //         decoration: BoxDecoration(
+              //           shape: BoxShape.circle,
+              //           color: Colors.orange,
+              //         ),
+              //       ),
+              //     ),
+              //     Padding(
+              //       padding: EdgeInsets.all(5.0),
+              //       child: Container(
+              //         width: 50,
+              //         height: 50,
+              //         decoration: BoxDecoration(
+              //           shape: BoxShape.circle,
+              //           color: Colors.brown,
+              //         ),
+              //       ),
+              //     ),
+              //     Padding(
+              //       padding: EdgeInsets.all(5.0),
+              //       child: Container(
+              //         width: 50,
+              //         height: 50,
+              //         decoration: BoxDecoration(
+              //           shape: BoxShape.circle,
+              //           color: Colors.greenAccent,
+              //         ),
+              //       ),
+              //     ),
+              //     Padding(
+              //       padding: EdgeInsets.all(5.0),
+              //       child: Container(
+              //         width: 50,
+              //         height: 50,
+              //         decoration: BoxDecoration(
+              //           shape: BoxShape.circle,
+              //           color: Colors.pinkAccent,
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
 
               SizedBox(height: 20),
               Text("Repeat"),
@@ -354,13 +355,13 @@ class _CreateHabitScreenState extends State<CreateHabitScreen> {
     ];
     return Row(
       children: [
-        for (var i = 0; i < iconCount; i++)
+        for (var index = 0; index < iconCount; index++)
           Padding(
             padding: EdgeInsets.all(8.0),
             child: GestureDetector(
               onTap: () {
                 setState(() {
-                  selectedIndex = i;
+                  selectedIconIndex = index;
                 });
               },
               child: AnimatedContainer(
@@ -369,16 +370,70 @@ class _CreateHabitScreenState extends State<CreateHabitScreen> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16.0),
                   border: Border.all(
-                    width: 1.0,
-                    color: selectedIndex == i
+                    width: 2.0,
+                    color: selectedIconIndex == index
                         ? Colors.blue
                         : Colors.transparent,
                   ),
-                  color: selectedIndex == i
+                  color: selectedIconIndex == index
                       ? Colors.grey[300]
                       : context.cardColor,
                 ),
-                child: Padding(padding: EdgeInsets.all(16.0), child: icons[i]),
+                child: Padding(padding: EdgeInsets.all(16.0), child: icons[index]),
+              ),
+            ),
+          ),
+      ],
+    );
+  }
+
+  // Color selection - Color view
+  Widget _buildColorSelection() {
+    List<Color> colors = [
+      Colors.blue,
+      Colors.amber,
+      Colors.blueGrey,
+      Colors.red,
+      Colors.green,
+      Colors.purple,
+      Colors.cyan,
+      Colors.pink,
+      Colors.purpleAccent,
+      Colors.indigo,
+      Colors.limeAccent,
+      Colors.orange,
+      Colors.brown,
+      Colors.greenAccent,
+      Colors.pinkAccent,
+    ];
+    return Wrap(
+      spacing: 8,
+      runSpacing: 8,
+      children: [
+        for (var index = 0; index < colors.length; index++)
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  selectedColorIndex = index;
+                });
+              },
+              child: AnimatedContainer(
+                duration: Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+                width: 55,
+                height: 55,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    width: 2.0,
+                    color: selectedColorIndex == index
+                        ? Colors.blue
+                        : Colors.transparent,
+                  ),
+                  color: colors[index],
+                ),
               ),
             ),
           ),
