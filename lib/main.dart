@@ -1,3 +1,4 @@
+import 'package:fitness_habit_tracker/core/theme/app_theme.dart';
 import 'package:fitness_habit_tracker/features/habits/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,8 @@ class FitnessHabitApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Fitness Habit Tracker',
+      theme: AppTheme.lightTheme,
       home: const MyHomePage(),
     );
   }
