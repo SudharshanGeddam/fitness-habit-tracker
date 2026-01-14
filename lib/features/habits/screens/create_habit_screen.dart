@@ -10,6 +10,7 @@ class CreateHabitScreen extends StatefulWidget {
 }
 
 int selectedIconIndex = 0, selectedColorIndex = 0, selectedRepeatIndex = 0;
+final Set<int> selectedDays = {};
 
 class _CreateHabitScreenState extends State<CreateHabitScreen> {
   bool selectedIcon = false;
@@ -61,7 +62,7 @@ class _CreateHabitScreenState extends State<CreateHabitScreen> {
               _buildIconSelection(),
               SizedBox(height: 20),
               Text("Color"),
-              _buildColorSelection(),
+              _buildColorSelection(selectedColorIndex),
               SizedBox(height: 20),
               Text("Repeat"),
               SizedBox(height: 20),
@@ -186,7 +187,7 @@ class _CreateHabitScreenState extends State<CreateHabitScreen> {
   }
 
   // Color selection - Color view
-  Widget _buildColorSelection() {
+  Widget _buildColorSelection(int index) {
     List<Color> colors = [
       Colors.blue,
       Colors.amber,
@@ -208,29 +209,44 @@ class _CreateHabitScreenState extends State<CreateHabitScreen> {
       spacing: 8,
       runSpacing: 8,
       children: [
-        for (var index = 0; index < colors.length; index++)
+        for (var i = 0; i < colors.length; i++)
           Padding(
             padding: EdgeInsets.all(8.0),
             child: GestureDetector(
               onTap: () {
                 setState(() {
-                  selectedColorIndex = index;
+                  selectedColorIndex = i;
                 });
               },
-              child: AnimatedContainer(
-                duration: Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
+              child: SizedBox(
                 width: 55,
                 height: 55,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    width: 2.0,
-                    color: selectedColorIndex == index
-                        ? Colors.blue
-                        : Colors.transparent,
-                  ),
-                  color: colors[index],
+                child: Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    AnimatedContainer(
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                      width: 55,
+                      height: 55,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          width: 2.0,
+                          color: selectedColorIndex == i
+                              ? context.primaryColor
+                              : Colors.transparent,
+                        ),
+                        color: colors[i],
+                      ),
+                    ),
+                    if (selectedColorIndex == i)
+                      Positioned(
+                        width: 50,
+                        height: 50,
+                        child: Icon(Icons.check, color: Colors.white, size: 40),
+                      ),
+                  ],
                 ),
               ),
             ),
@@ -268,88 +284,42 @@ class _CreateHabitScreenState extends State<CreateHabitScreen> {
 
   // Day Selection
   Widget _buildDaySelectionCards() {
+    List<String> days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        SizedBox(
-          width: 50,
-          height: 50,
-          child: Container(
+      children: List.generate(days.length, (index) {
+        final isSelected = selectedDays.contains(index);
+        return GestureDetector(
+          onTap: () {
+            setState(() {
+              if (isSelected) {
+                selectedDays.remove(index);
+              } else {
+                selectedDays.add(index);
+              }
+            });
+          },
+          child: AnimatedContainer(
+            duration: Duration(milliseconds: 300),
+            width: 50,
+            height: 50,
+            alignment: Alignment.center,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.0),
-              color: Color.fromRGBO(137, 133, 233, 1),
+              color: isSelected ? context.primaryColor : context.cardColor,
             ),
-            child: Center(child: Text("S")),
-          ),
-        ),
-        SizedBox(
-          width: 50,
-          height: 50,
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.0),
-              color: Color.fromRGBO(137, 133, 233, 1),
+            child: Center(
+              child: Text(
+                days[index],
+                style: context.textTheme.labelLarge?.copyWith(
+                  color: isSelected ? Colors.white : Colors.black,
+                ),
+              ),
             ),
-            child: Center(child: Text("M")),
           ),
-        ),
-        SizedBox(
-          width: 50,
-          height: 50,
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.0),
-              color: Color.fromRGBO(137, 133, 233, 1),
-            ),
-            child: Center(child: Text("T")),
-          ),
-        ),
-        SizedBox(
-          width: 50,
-          height: 50,
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.0),
-              color: Color.fromRGBO(137, 133, 233, 1),
-            ),
-            child: Center(child: Text("W")),
-          ),
-        ),
-        SizedBox(
-          width: 50,
-          height: 50,
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.0),
-              color: Color.fromRGBO(137, 133, 233, 1),
-            ),
-            child: Center(child: Text("T")),
-          ),
-        ),
-        SizedBox(
-          width: 50,
-          height: 50,
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.0),
-              color: Color.fromRGBO(137, 133, 233, 1),
-            ),
-            child: Center(child: Text("F")),
-          ),
-        ),
-        SizedBox(
-          width: 50,
-          height: 50,
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.0),
-              color: Color.fromRGBO(137, 133, 233, 1),
-            ),
-            child: Center(child: Text("S")),
-          ),
-        ),
-      ],
+        );
+      }),
     );
   }
 }
