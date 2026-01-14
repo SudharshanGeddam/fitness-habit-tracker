@@ -9,7 +9,7 @@ class CreateHabitScreen extends StatefulWidget {
   State<CreateHabitScreen> createState() => _CreateHabitScreenState();
 }
 
-int selectedIconIndex = 0, selectedColorIndex = 0;
+int selectedIconIndex = 0, selectedColorIndex = 0, selectedRepeatIndex = 0;
 
 class _CreateHabitScreenState extends State<CreateHabitScreen> {
   bool selectedIcon = false;
@@ -62,211 +62,6 @@ class _CreateHabitScreenState extends State<CreateHabitScreen> {
               SizedBox(height: 20),
               Text("Color"),
               _buildColorSelection(),
-              // Wrap(
-              //   runAlignment: WrapAlignment.spaceEvenly,
-
-              //   children: [
-              //     Padding(
-              //       padding: EdgeInsets.all(5.0),
-              //       child: Container(
-              //         width: 50,
-              //         height: 50,
-              //         decoration: BoxDecoration(
-              //           shape: BoxShape.circle,
-              //           color: Colors.blue,
-              //         ),
-              //       ),
-              //     ),
-              //     Padding(
-              //       padding: EdgeInsets.all(5.0),
-              //       child: Container(
-              //         width: 50,
-              //         height: 50,
-              //         decoration: BoxDecoration(
-              //           shape: BoxShape.circle,
-              //           color: Colors.amber,
-              //         ),
-              //       ),
-              //     ),
-              //     Padding(
-              //       padding: EdgeInsets.all(5.0),
-              //       child: Container(
-              //         width: 50,
-              //         height: 50,
-              //         decoration: BoxDecoration(
-              //           shape: BoxShape.circle,
-              //           color: Colors.blueGrey,
-              //         ),
-              //       ),
-              //     ),
-              //     Padding(
-              //       padding: EdgeInsets.all(5.0),
-              //       child: Container(
-              //         width: 50,
-              //         height: 50,
-              //         decoration: BoxDecoration(
-              //           shape: BoxShape.circle,
-              //           color: Colors.red,
-              //         ),
-              //       ),
-              //     ),
-              //     Padding(
-              //       padding: EdgeInsets.all(5.0),
-              //       child: Container(
-              //         width: 50,
-              //         height: 50,
-              //         decoration: BoxDecoration(
-              //           shape: BoxShape.circle,
-              //           color: Colors.green,
-              //         ),
-              //       ),
-              //     ),
-              //     Padding(
-              //       padding: EdgeInsets.all(5.0),
-              //       child: Container(
-              //         width: 50,
-              //         height: 50,
-              //         decoration: BoxDecoration(
-              //           shape: BoxShape.circle,
-              //           color: Colors.purple,
-              //         ),
-              //       ),
-              //     ),
-              //     Padding(
-              //       padding: EdgeInsets.all(5.0),
-              //       child: Container(
-              //         width: 50,
-              //         height: 50,
-              //         decoration: BoxDecoration(
-              //           shape: BoxShape.circle,
-              //           color: Colors.cyan,
-              //         ),
-              //       ),
-              //     ),
-              //     Padding(
-              //       padding: EdgeInsets.all(5.0),
-              //       child: Container(
-              //         width: 50,
-              //         height: 50,
-              //         decoration: BoxDecoration(
-              //           shape: BoxShape.circle,
-              //           color: Colors.pink,
-              //         ),
-              //       ),
-              //     ),
-              //     Padding(
-              //       padding: EdgeInsets.all(5.0),
-              //       child: Container(
-              //         width: 50,
-              //         height: 50,
-              //         decoration: BoxDecoration(
-              //           shape: BoxShape.circle,
-              //           color: Colors.redAccent,
-              //         ),
-              //       ),
-              //     ),
-              //     Padding(
-              //       padding: EdgeInsets.all(5.0),
-              //       child: Container(
-              //         width: 50,
-              //         height: 50,
-              //         decoration: BoxDecoration(
-              //           shape: BoxShape.circle,
-              //           color: Colors.purpleAccent,
-              //         ),
-              //       ),
-              //     ),
-              //     Padding(
-              //       padding: EdgeInsets.all(5.0),
-              //       child: Container(
-              //         width: 50,
-              //         height: 50,
-              //         decoration: BoxDecoration(
-              //           shape: BoxShape.circle,
-              //           color: Colors.indigo,
-              //         ),
-              //       ),
-              //     ),
-              //     Padding(
-              //       padding: EdgeInsets.all(5.0),
-              //       child: Container(
-              //         width: 50,
-              //         height: 50,
-              //         decoration: BoxDecoration(
-              //           shape: BoxShape.circle,
-              //           color: Colors.blueGrey,
-              //         ),
-              //       ),
-              //     ),
-              //     Padding(
-              //       padding: EdgeInsets.all(5.0),
-              //       child: Container(
-              //         width: 50,
-              //         height: 50,
-              //         decoration: BoxDecoration(
-              //           shape: BoxShape.circle,
-              //           color: Colors.lightBlueAccent,
-              //         ),
-              //       ),
-              //     ),
-              //     Padding(
-              //       padding: EdgeInsets.all(5.0),
-              //       child: Container(
-              //         width: 50,
-              //         height: 50,
-              //         decoration: BoxDecoration(
-              //           shape: BoxShape.circle,
-              //           color: Colors.limeAccent,
-              //         ),
-              //       ),
-              //     ),
-              //     Padding(
-              //       padding: EdgeInsets.all(5.0),
-              //       child: Container(
-              //         width: 50,
-              //         height: 50,
-              //         decoration: BoxDecoration(
-              //           shape: BoxShape.circle,
-              //           color: Colors.orange,
-              //         ),
-              //       ),
-              //     ),
-              //     Padding(
-              //       padding: EdgeInsets.all(5.0),
-              //       child: Container(
-              //         width: 50,
-              //         height: 50,
-              //         decoration: BoxDecoration(
-              //           shape: BoxShape.circle,
-              //           color: Colors.brown,
-              //         ),
-              //       ),
-              //     ),
-              //     Padding(
-              //       padding: EdgeInsets.all(5.0),
-              //       child: Container(
-              //         width: 50,
-              //         height: 50,
-              //         decoration: BoxDecoration(
-              //           shape: BoxShape.circle,
-              //           color: Colors.greenAccent,
-              //         ),
-              //       ),
-              //     ),
-              //     Padding(
-              //       padding: EdgeInsets.all(5.0),
-              //       child: Container(
-              //         width: 50,
-              //         height: 50,
-              //         decoration: BoxDecoration(
-              //           shape: BoxShape.circle,
-              //           color: Colors.pinkAccent,
-              //         ),
-              //       ),
-              //     ),
-              //   ],
-              // ),
-
               SizedBox(height: 20),
               Text("Repeat"),
               SizedBox(height: 20),
@@ -379,7 +174,10 @@ class _CreateHabitScreenState extends State<CreateHabitScreen> {
                       ? Colors.grey[300]
                       : context.cardColor,
                 ),
-                child: Padding(padding: EdgeInsets.all(16.0), child: icons[index]),
+                child: Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: icons[index],
+                ),
               ),
             ),
           ),
@@ -443,14 +241,27 @@ class _CreateHabitScreenState extends State<CreateHabitScreen> {
 
   // Repeat section - Daily, Weekly, Monthly
   Widget _buildRepeatSectionChips() {
+    List<String> repeatOptions = ['Daily', 'Weekly', 'Monthly'];
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Chip(label: Text('Daily')),
-        SizedBox(width: 8.0),
-        Chip(label: Text('Weekly')),
-        SizedBox(width: 8.0),
-        Chip(label: Text('Monthly')),
+        for (var option in repeatOptions)
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                selectedRepeatIndex = repeatOptions.indexOf(option);
+              });
+            },
+            child: selectedRepeatIndex == repeatOptions.indexOf(option)
+                ? Chip(
+                    backgroundColor: context.primaryColor,
+                    label: Text(option, style: TextStyle(color: Colors.white)),
+                  )
+                : Chip(
+                    backgroundColor: context.cardColor,
+                    label: Text(option, style: TextStyle(color: Colors.black)),
+                  ),
+          ),
       ],
     );
   }
