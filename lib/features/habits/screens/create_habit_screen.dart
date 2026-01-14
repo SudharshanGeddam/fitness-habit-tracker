@@ -9,7 +9,10 @@ class CreateHabitScreen extends StatefulWidget {
   State<CreateHabitScreen> createState() => _CreateHabitScreenState();
 }
 
-int selectedIconIndex = 0, selectedColorIndex = 0, selectedRepeatIndex = 0;
+int selectedIconIndex = 0,
+    selectedColorIndex = 0,
+    selectedRepeatIndex = 0,
+    selectedTimeIndex = 0;
 final Set<int> selectedDays = {};
 
 class _CreateHabitScreenState extends State<CreateHabitScreen> {
@@ -80,17 +83,7 @@ class _CreateHabitScreenState extends State<CreateHabitScreen> {
               SizedBox(height: 20),
               Text("Do it at:"),
               SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-                children: [
-                  Chip(label: Text("Morning")),
-                  SizedBox(width: 8.0),
-                  Chip(label: Text("Afternoon")),
-                  SizedBox(width: 8.0),
-                  Chip(label: Text("Evening")),
-                ],
-              ),
+              _buildTimeSelectionChips(),
               SizedBox(height: 20),
               Row(
                 children: [
@@ -320,6 +313,33 @@ class _CreateHabitScreenState extends State<CreateHabitScreen> {
           ),
         );
       }),
+    );
+  }
+
+  // Time Selection Chips
+  Widget _buildTimeSelectionChips() {
+    List<String> timeOptions = ['Morning', 'Afternoon', 'Evening'];
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        for (var option in timeOptions)
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                selectedTimeIndex = timeOptions.indexOf(option);
+              });
+            },
+            child: selectedTimeIndex == timeOptions.indexOf(option)
+                ? Chip(
+                    backgroundColor: context.primaryColor,
+                    label: Text(option, style: TextStyle(color: Colors.white)),
+                  )
+                : Chip(
+                    backgroundColor: context.cardColor,
+                    label: Text(option, style: TextStyle(color: Colors.black)),
+                  ),
+          ),
+      ],
     );
   }
 }
