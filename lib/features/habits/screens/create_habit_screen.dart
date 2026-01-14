@@ -168,9 +168,14 @@ class _CreateHabitScreenState extends State<CreateHabitScreen> {
                       ? Colors.grey[300]
                       : context.cardColor,
                 ),
-                child: Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: icons[index],
+                child: AnimatedScale(
+                  scale: selectedColorIndex == index ? 1.05 : 1.0,
+                  duration: Duration(milliseconds: 120),
+                  curve: Curves.easeInOut,
+                  child: Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: icons[index],
+                  ),
                 ),
               ),
             ),
