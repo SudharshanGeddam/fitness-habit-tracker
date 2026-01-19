@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class HabitModel {
   String title;
-  ImageIcon icon;
+  String icon;
   Color color;
   bool isCompleted;
 

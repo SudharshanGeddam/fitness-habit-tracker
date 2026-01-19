@@ -1,4 +1,3 @@
-import 'package:fitness_habit_tracker/core/constants/app_icons.dart';
 import 'package:fitness_habit_tracker/core/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 
@@ -9,10 +8,8 @@ class CreateHabitScreen extends StatefulWidget {
   State<CreateHabitScreen> createState() => _CreateHabitScreenState();
 }
 
-int selectedIconIndex = 0,
-    selectedColorIndex = 0,
-    selectedRepeatIndex = 0,
-    selectedTimeIndex = 0;
+int selectedColorIndex = 0, selectedRepeatIndex = 0, selectedTimeIndex = 0;
+String selectedIconIndex = '🏀';
 final Set<int> selectedDays = {};
 
 class _CreateHabitScreenState extends State<CreateHabitScreen> {
@@ -135,52 +132,49 @@ class _CreateHabitScreenState extends State<CreateHabitScreen> {
   // Icon selection - Icon view
   Widget _buildIconSelection() {
     int iconCount = 5;
-    List<ImageIcon> icons = [
-      ImageIcon(AppIcons.basketBall, color: Colors.red),
-      ImageIcon(AppIcons.cupIcon, color: Colors.amber),
-      ImageIcon(AppIcons.goldBadge, color: Colors.blue),
-      ImageIcon(AppIcons.iceSkating),
-      ImageIcon(AppIcons.happiness, color: Colors.green),
-    ];
-    return Row(
-      children: [
-        for (var index = 0; index < iconCount; index++)
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: GestureDetector(
-              onTap: () {
-                setState(() {
-                  selectedIconIndex = index;
-                });
-              },
-              child: AnimatedContainer(
-                duration: Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16.0),
-                  border: Border.all(
-                    width: 2.0,
-                    color: selectedIconIndex == index
-                        ? Colors.blue
-                        : Colors.transparent,
-                  ),
-                  color: selectedIconIndex == index
-                      ? Colors.grey[300]
-                      : context.cardColor,
-                ),
-                child: AnimatedScale(
-                  scale: selectedColorIndex == index ? 1.05 : 1.0,
-                  duration: Duration(milliseconds: 120),
+    List<String> icons = ['🏀', '☕', '🏅', '⛸️', '😊'];
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          for (var index = 0; index < iconCount; index++)
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedIconIndex = icons[index];
+                  });
+                },
+                child: AnimatedContainer(
+                  duration: Duration(milliseconds: 300),
                   curve: Curves.easeInOut,
-                  child: Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: icons[index],
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16.0),
+                    border: Border.all(
+                      width: 2.0,
+                      color: selectedIconIndex == icons[index]
+                          ? Colors.blue
+                          : Colors.transparent,
+                    ),
+                    color: selectedIconIndex == icons[index]
+                        ? Colors.grey[300]
+                        : context.cardColor,
+                  ),
+                  child: AnimatedScale(
+                    scale: selectedColorIndex == index ? 1.05 : 1.0,
+                    duration: Duration(milliseconds: 120),
+                    curve: Curves.easeInOut,
+                    child: Padding(
+                      padding: EdgeInsets.all(12.0),
+                      child: Text(icons[index], style: TextStyle(fontSize: 28)),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-      ],
+        ],
+      ),
     );
   }
 

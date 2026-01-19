@@ -42,7 +42,7 @@ class _HabitCardState extends State<HabitCard> {
                 borderRadius: BorderRadius.circular(10),
               ),
               alignment: Alignment.center,
-              child: widget.habits.icon,
+              child: Text(widget.habits.icon),
             ),
             SizedBox(width: 12),
             Expanded(
