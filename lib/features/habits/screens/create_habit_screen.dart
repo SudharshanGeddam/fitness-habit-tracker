@@ -1,3 +1,4 @@
+import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:fitness_habit_tracker/core/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 
@@ -54,8 +55,14 @@ class _CreateHabitScreenState extends State<CreateHabitScreen> {
                 children: [
                   Text("Icons"),
                   Spacer(),
-                  Text("View all"),
-                  Icon(Icons.arrow_forward),
+                  GestureDetector(
+                    onTap: _openEmojiPicker,
+                    child: Text(
+                      "View all",
+                      style: TextStyle(color: context.primaryColor),
+                    ),
+                  ),
+                  Icon(Icons.arrow_forward, color: context.primaryColor),
                 ],
               ),
               SizedBox(height: 20),
@@ -339,6 +346,45 @@ class _CreateHabitScreenState extends State<CreateHabitScreen> {
                   ),
           ),
       ],
+    );
+  }
+
+  // Emoji selection widget
+  void _openEmojiPicker() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16.0)),
+      ),
+      builder: (context) {
+        return SizedBox(
+          height: MediaQuery.of(context).size.height * 0.50,
+          child: EmojiPicker(
+            onEmojiSelected: (category, emoji) {
+              setState(() {
+                selectedIconIndex = emoji.emoji;
+              });
+              Navigator.pop(context);
+            },
+            config: Config(
+              height: 28,
+              skinToneConfig: SkinToneConfig(
+                enabled: false,
+                indicatorColor: context.primaryColor,
+              ),
+              searchViewConfig: SearchViewConfig(
+                backgroundColor: Colors.black12,
+                buttonIconColor: Colors.white,
+                hintText: "Search Emoji",
+              ),
+              categoryViewConfig: CategoryViewConfig(
+                initCategory: Category.SMILEYS,
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }
