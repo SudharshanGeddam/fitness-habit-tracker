@@ -15,8 +15,10 @@ final Set<int> selectedDays = {};
 
 class _CreateHabitScreenState extends State<CreateHabitScreen> {
   bool selectedIcon = false;
+  bool isHabitNameFilled = false;
   @override
   Widget build(BuildContext context) {
+    final isEnabled = isHabitNameFilled;
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -49,6 +51,11 @@ class _CreateHabitScreenState extends State<CreateHabitScreen> {
                   ),
                   hint: Text("Habit Name"),
                 ),
+                onChanged: (value) {
+                  setState(() {
+                    isHabitNameFilled = value.trim().isNotEmpty;
+                  });
+                },
               ),
               SizedBox(height: 20),
               Row(
@@ -106,7 +113,27 @@ class _CreateHabitScreenState extends State<CreateHabitScreen> {
               ),
               SizedBox(
                 width: double.infinity,
-                child: ElevatedButton(onPressed: () {}, child: Text("Save")),
+                child: AnimatedContainer(
+                  duration: Duration(milliseconds: 250),
+                  curve: Curves.easeInOut,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12.0),
+                    color: isEnabled ? context.primaryColor : Colors.grey,
+                  ),
+                  child: AnimatedScale(
+                    scale: isEnabled ? 1.03 : 1.0,
+                    duration: Duration(milliseconds: 150),
+                    curve: Curves.easeInOut,
+                    child: ElevatedButton(
+                      onPressed: isEnabled ? () {} : null,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        shadowColor: Colors.transparent,
+                      ),
+                      child: Text("Save"),
+                    ),
+                  ),
+                ),
               ),
             ],
           ),
