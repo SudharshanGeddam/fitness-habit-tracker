@@ -4,6 +4,9 @@ import 'package:fitness_habit_tracker/features/habits/models/cards_data.dart';
 import 'package:fitness_habit_tracker/features/habits/models/habit_model.dart';
 import 'package:fitness_habit_tracker/features/habits/screens/create_habit_screen.dart';
 import 'package:fitness_habit_tracker/widgets/bottom_nav_bar.dart';
+import 'package:fitness_habit_tracker/features/habits/screens/reports_screen.dart';
+import 'package:fitness_habit_tracker/features/habits/screens/my_habits_screen.dart';
+import 'package:fitness_habit_tracker/features/habits/screens/account_screen.dart';
 import 'package:fitness_habit_tracker/widgets/habit_card.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +18,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int _currentIndex = 0;
   List<HabitModel> get activeHabitsCards =>
       dataList.where((habit) => !habit.isCompleted).toList();
   List<HabitModel> get completedHabitsCards =>
@@ -23,33 +27,53 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          leading: ImageIcon(AppIcons.appIcon, color: Colors.blue),
-          title: Column(
-            children: [
-              Text("Fitness Tracker"),
-              Text(
-                "Discipline builds freedom",
-                style: context.textTheme.titleSmall,
-              ),
-            ],
-          ),
-          actions: [
-            IconButton(onPressed: () {}, icon: Icon(Icons.logout_outlined)),
-          ],
-          centerTitle: true,
+        appBar: _currentIndex == 0
+            ? AppBar(
+                leading: ImageIcon(AppIcons.appIcon, color: Colors.blue),
+                title: Column(
+                  children: [
+                    Text("Fitness Tracker"),
+                    Text(
+                      "Discipline builds freedom",
+                      style: context.textTheme.titleSmall,
+                    ),
+                  ],
+                ),
+                actions: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.logout_outlined),
+                  ),
+                ],
+                centerTitle: true,
+              )
+            : null,
+        floatingActionButton: _currentIndex == 0
+            ? FloatingActionButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CreateHabitScreen(),
+                    ),
+                  );
+                },
+                child: Icon(Icons.add),
+              )
+            : null,
+        bottomNavigationBar: BottomNavBar(
+          currentIndex: _currentIndex,
+          onTap: (index) => setState(() => _currentIndex = index),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => CreateHabitScreen()),
-            );
-          },
-          child: Icon(Icons.add),
-        ),
-        bottomNavigationBar: BottomNavBar(),
-        body: Padding(
+        body: _buildBodyForIndex(),
+      ),
+    );
+  }
+
+  Widget _buildBodyForIndex() {
+    switch (_currentIndex) {
+      case 0:
+        return Padding(
           padding: EdgeInsets.all(8.0),
           child: Column(
             children: [
@@ -105,9 +129,16 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ],
           ),
-        ),
-      ),
-    );
+        );
+      case 1:
+        return ReportsScreen();
+      case 2:
+        return MyHabitsScreen();
+      case 3:
+        return AccountScreen();
+      default:
+        return Container();
+    }
   }
 
   Widget _buildDayFilterChips() {
