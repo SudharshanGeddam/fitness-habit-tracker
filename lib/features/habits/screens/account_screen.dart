@@ -1,3 +1,4 @@
+import 'package:fitness_habit_tracker/core/constants/app_icons.dart';
 import 'package:fitness_habit_tracker/core/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +10,8 @@ class AccountScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Account', style: context.textTheme.titleLarge),
+          leading: ImageIcon(AppIcons.appIcon, color: Colors.blue),
+          title: Text("Account", style: context.textTheme.titleMedium),
           centerTitle: true,
         ),
         body: Padding(
@@ -19,7 +21,10 @@ class AccountScreen extends StatelessWidget {
             child: Card(
               color: context.cardColor,
               child: Center(
-                child: Text('Account details coming soon', style: context.textTheme.bodyMedium),
+                child: Text(
+                  'Account details coming soon',
+                  style: context.textTheme.bodyMedium,
+                ),
               ),
             ),
           ),

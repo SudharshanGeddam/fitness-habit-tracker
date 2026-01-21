@@ -1,3 +1,4 @@
+import 'package:fitness_habit_tracker/core/constants/app_icons.dart';
 import 'package:fitness_habit_tracker/core/extensions/context_extensions.dart';
 import 'package:fitness_habit_tracker/features/habits/models/habit_model.dart';
 import 'package:fitness_habit_tracker/widgets/habit_card.dart';
@@ -11,7 +12,8 @@ class MyHabitsScreen extends StatelessWidget{
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('My Habits', style: context.textTheme.titleLarge),
+          leading: ImageIcon(AppIcons.appIcon, color: Colors.blue),
+          title: Text("My Habits", style: context.textTheme.titleMedium),
           centerTitle: true,
         ),
         body: Padding(
