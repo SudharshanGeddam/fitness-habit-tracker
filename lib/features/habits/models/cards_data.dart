@@ -2,6 +2,7 @@ import 'package:fitness_habit_tracker/features/habits/models/habit_model.dart';
 
 final List<HabitModel> dataList = [
   HabitModel(
+    id: '123',
     title: 'Set Small Goals',
     icon: '🎯',
     colorValue: 0xFF2196F3,
@@ -12,6 +13,7 @@ final List<HabitModel> dataList = [
     createdAt: DateTime.now(),
   ),
   HabitModel(
+    id: '234',
     title: 'Work',
     icon: '💼',
     colorValue: 0xFF9C27B0,
@@ -22,6 +24,7 @@ final List<HabitModel> dataList = [
     timeOfDayType: TimeOfDayType.morning,
   ),
   HabitModel(
+    id: '567',
     title: 'Meditation',
     icon: '🧘‍♂️',
     colorValue: 0xFF2196F3,
@@ -32,6 +35,7 @@ final List<HabitModel> dataList = [
     isCompleted: false,
   ),
   HabitModel(
+    id: '890',
     title: 'BasketBall',
     icon: '🏀',
     colorValue: 0xFF9C27B0,
@@ -42,6 +46,7 @@ final List<HabitModel> dataList = [
     isCompleted: false,
   ),
   HabitModel(
+    id: '345',
     title: 'Sleep Over 8hr',
     icon: '😴',
     colorValue: 0xFFFF9800,
@@ -52,6 +57,7 @@ final List<HabitModel> dataList = [
     timeOfDayType: TimeOfDayType.evening,
   ),
   HabitModel(
+    id: '2341',
     title: 'Playing Games',
     icon: '🎮',
     colorValue: 0xFF2196F3,
@@ -62,6 +68,7 @@ final List<HabitModel> dataList = [
     createdAt: DateTime.now(),
   ),
   HabitModel(
+    id: '345',
     title: 'Exercise',
     icon: '🥊',
     colorValue: 0xFFFF9800,

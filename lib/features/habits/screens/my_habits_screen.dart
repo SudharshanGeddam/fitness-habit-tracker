@@ -26,6 +26,7 @@ class MyHabitsScreen extends StatelessWidget {
                     // Example HabitCard usage
                     HabitCard(
                       habits: HabitModel(
+                        id: 'sw45',
                         title: 'Morning Run',
                         isCompleted: false,
                         icon: '🏃‍➡️',
@@ -41,6 +42,7 @@ class MyHabitsScreen extends StatelessWidget {
                     ),
                     HabitCard(
                       habits: HabitModel(
+                        id: '3452',
                         title: 'Read Book',
                         isCompleted: false,
                         icon: '📚',

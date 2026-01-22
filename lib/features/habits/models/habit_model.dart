@@ -1,4 +1,5 @@
 class HabitModel {
+  final String id;
   final String title;
   final String icon;
   final int colorValue;
@@ -11,6 +12,7 @@ class HabitModel {
   final DateTime createdAt;
 
   HabitModel({
+    required this.id,
     required this.title,
     required this.icon,
     required this.colorValue,
