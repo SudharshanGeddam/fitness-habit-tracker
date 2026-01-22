@@ -1,5 +1,7 @@
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:fitness_habit_tracker/core/extensions/context_extensions.dart';
+import 'package:fitness_habit_tracker/features/data/habit_repository.dart';
+import 'package:fitness_habit_tracker/features/habits/models/habit_model.dart';
 import 'package:flutter/material.dart';
 
 class CreateHabitScreen extends StatefulWidget {
@@ -9,13 +11,78 @@ class CreateHabitScreen extends StatefulWidget {
   State<CreateHabitScreen> createState() => _CreateHabitScreenState();
 }
 
-int selectedColorIndex = 0, selectedRepeatIndex = 0, selectedTimeIndex = 0;
-String selectedIconIndex = '🏀';
-final Set<int> selectedDays = {};
-
 class _CreateHabitScreenState extends State<CreateHabitScreen> {
   bool selectedIcon = false;
   bool isHabitNameFilled = false;
+  late TextEditingController habitTitleController;
+  final habitId = DateTime.now().microsecondsSinceEpoch.toString();
+
+  int selectedColorIndex = 0;
+  int selectedRepeatIndex = 0;
+  int selectedTimeIndex = 0;
+  String selectedIconIndex = '🏀';
+  final Set<int> selectedDays = {};
+
+  @override
+  void initState() {
+    super.initState();
+    habitTitleController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    habitTitleController.dispose();
+    super.dispose();
+  }
+
+  // Helper methods to convert indices to enum values
+  RepeatType get selectedRepeatType {
+    switch (selectedRepeatIndex) {
+      case 0:
+        return RepeatType.daily;
+      case 1:
+        return RepeatType.weekly;
+      case 2:
+        return RepeatType.monthly;
+      default:
+        return RepeatType.daily;
+    }
+  }
+
+  TimeOfDayType get selectedTimeOfDay {
+    switch (selectedTimeIndex) {
+      case 0:
+        return TimeOfDayType.morning;
+      case 1:
+        return TimeOfDayType.afternoon;
+      case 2:
+        return TimeOfDayType.evening;
+      default:
+        return TimeOfDayType.morning;
+    }
+  }
+
+  int get selectedColorValue {
+    List<Color> colors = [
+      Colors.blue,
+      Colors.amber,
+      Colors.blueGrey,
+      Colors.red,
+      Colors.green,
+      Colors.purple,
+      Colors.cyan,
+      Colors.pink,
+      Colors.purpleAccent,
+      Colors.indigo,
+      Colors.limeAccent,
+      Colors.orange,
+      Colors.brown,
+      Colors.greenAccent,
+      Colors.pinkAccent,
+    ];
+    return colors[selectedColorIndex].value;
+  }
+
   @override
   Widget build(BuildContext context) {
     final isEnabled = isHabitNameFilled;
@@ -125,7 +192,22 @@ class _CreateHabitScreenState extends State<CreateHabitScreen> {
                     duration: Duration(milliseconds: 150),
                     curve: Curves.easeInOut,
                     child: ElevatedButton(
-                      onPressed: isEnabled ? () {} : null,
+                      onPressed: isEnabled
+                          ? () {
+                              final habit = HabitModel(
+                                id: habitId,
+                                title: habitTitleController.text.trim(),
+                                icon: selectedIconIndex,
+                                colorValue: selectedColorValue,
+                                repeatType: selectedRepeatType,
+                                repeatDays: selectedDays.toList(),
+                                timeOfDayType: selectedTimeOfDay,
+                                createdAt: DateTime.now(),
+                              );
+                              HabitRepository.instance.addHabit(habit);
+                              Navigator.pop(context);
+                            }
+                          : null,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,
                         shadowColor: Colors.transparent,
@@ -196,7 +278,7 @@ class _CreateHabitScreenState extends State<CreateHabitScreen> {
                         : context.cardColor,
                   ),
                   child: AnimatedScale(
-                    scale: selectedColorIndex == index ? 1.05 : 1.0,
+                    scale: selectedIconIndex == icons[index] ? 1.05 : 1.0,
                     duration: Duration(milliseconds: 120),
                     curve: Curves.easeInOut,
                     child: Padding(
