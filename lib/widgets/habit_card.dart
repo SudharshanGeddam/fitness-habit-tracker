@@ -13,6 +13,7 @@ class HabitCard extends StatefulWidget {
 
 class _HabitCardState extends State<HabitCard> {
   bool isCompleted = false;
+  int checkedColor = 0xFF4CAF50;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -28,7 +29,7 @@ class _HabitCardState extends State<HabitCard> {
         margin: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
         padding: EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: widget.habits.color,
+          color: Color(widget.habits.colorValue),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Row(
@@ -56,8 +57,8 @@ class _HabitCardState extends State<HabitCard> {
                   ? Icons.check_circle
                   : Icons.radio_button_unchecked,
               color: widget.habits.isCompleted
-                  ? Colors.green
-                  : widget.habits.color,
+                  ? Color(checkedColor)
+                  : Color(widget.habits.colorValue),
               size: 30,
             ),
           ],

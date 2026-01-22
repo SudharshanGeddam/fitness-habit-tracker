@@ -4,7 +4,7 @@ import 'package:fitness_habit_tracker/features/habits/models/habit_model.dart';
 import 'package:fitness_habit_tracker/widgets/habit_card.dart';
 import 'package:flutter/material.dart';
 
-class MyHabitsScreen extends StatelessWidget{
+class MyHabitsScreen extends StatelessWidget {
   const MyHabitsScreen({super.key});
 
   @override
@@ -25,13 +25,31 @@ class MyHabitsScreen extends StatelessWidget{
                   children: [
                     // Example HabitCard usage
                     HabitCard(
-                      habits: HabitModel(title: 'Morning Run', isCompleted: false, icon: '🏃‍➡️', color: Colors.purpleAccent),
+                      habits: HabitModel(
+                        title: 'Morning Run',
+                        isCompleted: false,
+                        icon: '🏃‍➡️',
+                        colorValue: Colors.purpleAccent.value,
+                        repeatType: RepeatType.daily,
+                        repeatDays: [],
+                        timeOfDayType: TimeOfDayType.morning,
+                        createdAt: DateTime.now(),
+                      ),
                       onToggle: () {
                         // Handle toggle action
                       },
                     ),
                     HabitCard(
-                      habits: HabitModel(title: 'Read Book', isCompleted: false, icon: '📚', color: Colors.blueAccent),
+                      habits: HabitModel(
+                        title: 'Read Book',
+                        isCompleted: false,
+                        icon: '📚',
+                        colorValue: Colors.blueAccent.value,
+                        repeatType: RepeatType.daily,
+                        repeatDays: [],
+                        timeOfDayType: TimeOfDayType.evening,
+                        createdAt: DateTime.now(),
+                      ),
                       onToggle: () {
                         // Handle toggle action
                       },
