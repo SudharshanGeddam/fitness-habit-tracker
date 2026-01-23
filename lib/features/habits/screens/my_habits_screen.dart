@@ -1,14 +1,20 @@
 import 'package:fitness_habit_tracker/core/constants/app_icons.dart';
 import 'package:fitness_habit_tracker/core/extensions/context_extensions.dart';
-import 'package:fitness_habit_tracker/features/habits/models/habit_model.dart';
+import 'package:fitness_habit_tracker/features/data/habit_repository.dart';
 import 'package:fitness_habit_tracker/widgets/habit_card.dart';
 import 'package:flutter/material.dart';
 
-class MyHabitsScreen extends StatelessWidget {
+class MyHabitsScreen extends StatefulWidget {
   const MyHabitsScreen({super.key});
 
   @override
+  State<MyHabitsScreen> createState() => _MyHabitsScreenState();
+}
+
+class _MyHabitsScreenState extends State<MyHabitsScreen> {
+  @override
   Widget build(BuildContext context) {
+    final habits = HabitRepository.instance.habits;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -18,49 +24,20 @@ class MyHabitsScreen extends StatelessWidget {
         ),
         body: Padding(
           padding: EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Expanded(
-                child: ListView(
-                  children: [
-                    // Example HabitCard usage
-                    HabitCard(
-                      habits: HabitModel(
-                        id: 'sw45',
-                        title: 'Morning Run',
-                        isCompleted: false,
-                        icon: '🏃‍➡️',
-                        colorValue: Colors.purpleAccent.value,
-                        repeatType: RepeatType.daily,
-                        repeatDays: [],
-                        timeOfDayType: TimeOfDayType.morning,
-                        createdAt: DateTime.now(),
-                      ),
-                      onToggle: () {
-                        // Handle toggle action
-                      },
-                    ),
-                    HabitCard(
-                      habits: HabitModel(
-                        id: '3452',
-                        title: 'Read Book',
-                        isCompleted: false,
-                        icon: '📚',
-                        colorValue: Colors.blueAccent.value,
-                        repeatType: RepeatType.daily,
-                        repeatDays: [],
-                        timeOfDayType: TimeOfDayType.evening,
-                        createdAt: DateTime.now(),
-                      ),
-                      onToggle: () {
-                        // Handle toggle action
-                      },
-                    ),
-                  ],
+          child: habits.isEmpty
+              ? Center(
+                  child: Text(
+                    "No habits added yet.",
+                    style: context.textTheme.bodyMedium,
+                  ),
+                )
+              : ListView.builder(
+                  itemCount: habits.length,
+                  itemBuilder: (context, index) {
+                    final habit = habits[index];
+                    return HabitCard(habits: habit, onToggle: () {  },);
+                  },
                 ),
-              ),
-            ],
-          ),
         ),
       ),
     );

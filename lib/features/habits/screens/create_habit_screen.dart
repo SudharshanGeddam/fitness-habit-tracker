@@ -63,24 +63,24 @@ class _CreateHabitScreenState extends State<CreateHabitScreen> {
   }
 
   int get selectedColorValue {
-    List<Color> colors = [
-      Colors.blue,
-      Colors.amber,
-      Colors.blueGrey,
-      Colors.red,
-      Colors.green,
-      Colors.purple,
-      Colors.cyan,
-      Colors.pink,
-      Colors.purpleAccent,
-      Colors.indigo,
-      Colors.limeAccent,
-      Colors.orange,
-      Colors.brown,
-      Colors.greenAccent,
-      Colors.pinkAccent,
+    const List<int> colorValues = [
+      0xFF2196F3, // Colors.blue
+      0xFFFFC107, // Colors.amber
+      0xFF607D8B, // Colors.blueGrey
+      0xFFF44336, // Colors.red
+      0xFF4CAF50, // Colors.green
+      0xFF9C27B0, // Colors.purple
+      0xFF00BCD4, // Colors.cyan
+      0xFFE91E63, // Colors.pink
+      0xFFE040FB, // Colors.purpleAccent
+      0xFF3F51B5, // Colors.indigo
+      0xFFFFEA00, // Colors.limeAccent
+      0xFFFF9100, // Colors.orange
+      0xFF795548, // Colors.brown
+      0xFF76FF03, // Colors.greenAccent
+      0xFFFF4081, // Colors.pinkAccent
     ];
-    return colors[selectedColorIndex].value;
+    return colorValues[selectedColorIndex];
   }
 
   @override
@@ -112,6 +112,7 @@ class _CreateHabitScreenState extends State<CreateHabitScreen> {
               Text("Habit Name"),
               SizedBox(height: 20.0),
               TextField(
+                controller: habitTitleController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12.0),

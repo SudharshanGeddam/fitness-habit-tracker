@@ -1,4 +1,5 @@
 import 'package:fitness_habit_tracker/core/extensions/context_extensions.dart';
+import 'package:fitness_habit_tracker/features/data/habit_repository.dart';
 import 'package:fitness_habit_tracker/features/habits/models/habit_model.dart';
 import 'package:flutter/material.dart';
 
@@ -13,12 +14,12 @@ class HabitCard extends StatefulWidget {
 
 class _HabitCardState extends State<HabitCard> {
   bool isCompleted = false;
-  int checkedColor = 0xFF4CAF50;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         setState(() {
+          HabitRepository.instance.toggleHabitCompletion(widget.habits.id);
           isCompleted = !isCompleted;
         });
         widget.onToggle();
@@ -50,6 +51,8 @@ class _HabitCardState extends State<HabitCard> {
               child: Text(
                 widget.habits.title,
                 style: context.textTheme.titleMedium,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
               ),
             ),
             Icon(
@@ -57,7 +60,7 @@ class _HabitCardState extends State<HabitCard> {
                   ? Icons.check_circle
                   : Icons.radio_button_unchecked,
               color: widget.habits.isCompleted
-                  ? Color(checkedColor)
+                  ? Colors.green
                   : Color(widget.habits.colorValue),
               size: 30,
             ),
