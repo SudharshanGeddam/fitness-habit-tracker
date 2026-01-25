@@ -122,7 +122,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 **Sudharshan**
 - B.Tech 3rd Year
 - Flutter Developer specializing in UI & Animations
-- [GitHub](https://github.com/SudharshanGeddam) | [Portfolio](#)
+- [GitHub](https://github.com/SudharshanGeddam)
 
 
 
