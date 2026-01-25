@@ -1,8 +1,11 @@
 import 'package:fitness_habit_tracker/core/theme/app_theme.dart';
+import 'package:fitness_habit_tracker/features/data/habit_repository.dart';
 import 'package:fitness_habit_tracker/features/habits/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await HabitRepository.instance.loadHabits();
   runApp(const FitnessHabitApp());
 }
 

@@ -29,7 +29,7 @@ class HabitRepository {
     final habitList = _habits.map((habit) => habit.toJson()).toList();
     await prefs.setStringList(
       _storageKey,
-      jsonEncode(habitList) as List<String>,
+      habitList.map((habit) => jsonEncode(habit)).toList(),
     );
   }
 
@@ -37,13 +37,17 @@ class HabitRepository {
   Future<void> loadHabits() async {
     final prefs = await SharedPreferences.getInstance();
     final storedHabits = prefs.getStringList(_storageKey);
-    if (storedHabits != null) {
-      _habits.clear();
-      for (var habitJson in storedHabits) {
-        final habitMap = jsonDecode(habitJson) as Map<String, dynamic>;
-        _habits.add(HabitModel.fromJson(habitMap));
-      }
+    if (storedHabits == null) {
+      return;
     }
+    final List decodedHabits = jsonDecode(storedHabits.toString());
+    _habits
+      ..clear()
+      ..addAll(
+        decodedHabits
+            .map((habitJson) => HabitModel.fromJson(habitJson))
+            .toList(),
+      );
   }
 
   void clear() {
